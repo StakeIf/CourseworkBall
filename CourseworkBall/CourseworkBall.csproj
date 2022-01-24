@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bonuce.cs" />
+    <Compile Include="Coin.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
