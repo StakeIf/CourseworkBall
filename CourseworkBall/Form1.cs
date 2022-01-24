@@ -18,7 +18,6 @@ namespace CourseworkBall
             InitializeComponent();
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             Game example = new Game();
