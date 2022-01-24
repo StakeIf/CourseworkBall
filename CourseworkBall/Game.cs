@@ -19,6 +19,8 @@ namespace CourseworkBall
         TheWall upperWall;
         TheWall lowerWall;
         Coin bitcoin;
+        Bomb boom;
+
 
         float gravity;
 
@@ -39,6 +41,7 @@ namespace CourseworkBall
             upperWall = new TheWall(650, -200);
             lowerWall = new TheWall(650, 400, true);
             bitcoin = new Coin(850, 300);
+            boom = new Bomb(900, 400);
 
             gravity = 0;
             this.Text = "Flappy ball Score: 0";
@@ -55,6 +58,7 @@ namespace CourseworkBall
             graphics.DrawImage(lowerWall.figureImage, lowerWall.x, lowerWall.y, lowerWall.sizeX, lowerWall.sizeY);
             graphics.DrawImage(bitcoin.figureImage, bitcoin.x, bitcoin.y, bitcoin.sizeX, bitcoin.sizeY);
 
+            graphics.DrawImage(boom.figureImage, boom.x, boom.y, boom.sizeX, boom.sizeY);
         }
 
         //Запуск игры заново
@@ -93,6 +97,8 @@ namespace CourseworkBall
         {
             if (ball.Collide(bitcoin) || upperWall.x == ball.x - 50)
                 this.Text = "Flappy ball Score: " + ++ball.score;
+            if (ball.Collide(boom))
+                this.Text = "Flappy ball Score: " + --ball.score;
         }
 
         
@@ -104,8 +110,10 @@ namespace CourseworkBall
             lowerWall.Move();
 
             bitcoin.Move();
+            boom.Move();
 
             ScorePlus();
+            boom.CreateNewBonuce(boom, ball);
             bitcoin.CreateNewBonuce(bitcoin, ball);
             upperWall.CreateNewWall(upperWall, lowerWall, ball);
         }
